@@ -11,6 +11,9 @@ const io = require('socket.io')(server,{
 
 io.on('connection',(socket)=>{
     console.log('connected');
+    socket.on('sendMsg',(msg)=>{
+        io.sockets.emit('sendOnClient',msg);
+    });
     socket.on('disconnect',(socket)=>{
         console.log('disconnect');
     });
